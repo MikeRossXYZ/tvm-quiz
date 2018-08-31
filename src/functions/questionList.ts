@@ -11,8 +11,9 @@ const questionTemplates:
     type: QuestionType.PvOrdinaryAmt,
     difficulty: 'easy',
     template: (vs) => {
-      return `${vs.name} is offered $${vs.pmtAmount} ${vs.periodType}ly
-      for the next ${vs.durationLength}
+      return `${vs.name} is offered
+      ${new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(vs.pmtAmount)}
+      ${vs.periodType}ly for the next ${vs.durationLength}
       ${vs.durationType + (Number(vs.durationLength) > 1 ? 's' : '')}, with
       the first payment at the end of this ${vs.periodType}. The interest rate is
       ${vs.rate}% per annum. How much should ${vs.name} pay for this?`;
@@ -22,8 +23,9 @@ const questionTemplates:
     type: QuestionType.PvOrdinaryAmt,
     difficulty: 'easy',
     template: (vs) => {
-      return `${vs.name} is promised $${vs.pmtAmount} ${vs.periodType}ly
-      for the next ${vs.durationLength}
+      return `${vs.name} is promised
+      ${new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(vs.pmtAmount)}
+      ${vs.periodType}ly for the next ${vs.durationLength}
       ${vs.durationType + (Number(vs.durationLength) > 1 ? 's' : '')}, with the first
       payment at the end of this ${vs.periodType}. The interest rate is
       ${vs.rate}% per annum. How much is this worth to ${vs.name} today?`;
@@ -36,7 +38,9 @@ const questionTemplates:
       return `Laurier offers to accept your tuition in equal installments over the next
       ${vs.durationLength}
       ${vs.durationType + (Number(vs.durationLength) > 1 ? 's' : '')}.
-      Your tuition is $${vs.pvAmount}. The interest rate is ${vs.rate}% per annum.
+      Your tuition is
+      ${new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(vs.pvAmount)}.
+      The interest rate is ${vs.rate}% per annum.
       What is your ${vs.periodType}ly payment, paid at the end of each ${vs.periodType}?`;
     },
     parameters: {pvMax: 6000, pvMin: 4000},
@@ -45,8 +49,9 @@ const questionTemplates:
     type: QuestionType.PvDueAmt,
     difficulty: 'easy',
     template: (vs) => {
-      return `For a birthday present, ${vs.name} is promised $${vs.pmtAmount} ${vs.periodType}ly
-      for the next ${vs.durationLength}
+      return `For a birthday present, ${vs.name} is promised
+      ${new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(vs.pvAmount)}
+      ${vs.periodType}ly for the next ${vs.durationLength}
       ${vs.durationType + (Number(vs.durationLength) > 1 ? 's' : '')}, with the first
       payment at the beginning of this ${vs.periodType}. The interest rate is
       ${vs.rate}% per annum. How much is this worth to ${vs.name} today?`;
@@ -56,8 +61,9 @@ const questionTemplates:
     type: QuestionType.PvDueAmt,
     difficulty: 'easy',
     template: (vs) => {
-      return `${vs.name} is offered $${vs.pmtAmount} ${vs.periodType}ly
-      for the next ${vs.durationLength}
+      return `${vs.name} is offered
+      ${new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(vs.pmtAmount)}
+      ${vs.periodType}ly for the next ${vs.durationLength}
       ${vs.durationType + (Number(vs.durationLength) > 1 ? 's' : '')}, with
       the first payment at the beginning of this ${vs.periodType}. The interest rate is
       ${vs.rate}% per annum. How much should ${vs.name} pay for this?`;

@@ -11,7 +11,7 @@
         <!-- Answer -->
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <div class="form-group row">
+            <div class="form-group">
               <input type="number" class="form-control text-center form-control-lg"
                 :class="{'font-weight-bold': guessStatus === 'incorrect',
                 'text-warning': guessStatus === 'incorrect', 'text-danger': guessStatus === 'justTellMe'}"
@@ -99,7 +99,11 @@
           this.guessStatus = 'correct';
         } else {
           this.guessStatus = 'incorrect';
-          setTimeout(() => { this.guessStatus = ''; }, 2000);
+          setTimeout(() => {
+            if (this.guessStatus === 'incorrect') {
+              this.guessStatus = '';
+            }
+          }, 2000);
         }
       }
 
