@@ -135,6 +135,19 @@ const questionTemplates:
     },
     parameters: { fvMin: 15000, fvMax: 40000, durationMin: 1, durationMax: 4 },
   },
+  {
+    type: QuestionType.MortgageAmt,
+    difficulty: 'medium',
+    template: (vs) => {
+      return `${vs.name} wants to buy a house for
+      ${new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(vs.pvAmount)}.
+      The ammortization period for the mortgage will be ${vs.durationLength}
+      ${vs.durationType + (Number(vs.durationLength) > 1 ? 's' : '')}, with a term of
+      ${vs.mortgageTermLength} ${vs.mortgageTermType + (Number(vs.mortgageTermLength) > 1 ? 's' : '')}.
+      The interest rate quoted is ${vs.rate}%. How much are ${vs.name}'s ${vs.periodType} payments?`;
+    },
+    parameters: { pvMin: 400000, durationMin: 20, durationMax: 30 },
+  }
 ];
 
 export {

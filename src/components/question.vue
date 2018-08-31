@@ -100,7 +100,7 @@
         } else {
           this.guessStatus = 'incorrect';
           setTimeout(() => {
-            if (this.guessStatus === 'incorrect') {
+            if (this.guessStatus !== 'justTellMe') {
               this.guessStatus = '';
             }
           }, 2000);
