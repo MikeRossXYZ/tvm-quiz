@@ -78,10 +78,13 @@ function genVars(type: QuestionType, params?: {[key: string]: number}):
   const minPmt = params ? params.pmtMin || MIN_PMT_AMT : MIN_PMT_AMT;
   const maxRate = params ? params.rateMax || MAX_RATE : MAX_RATE;
   const minRate = params ? params.rateMin || MIN_RATE : MIN_RATE;
+  const maxDurationYrs = params ? params.durationMax || MAX_DURATION_YRS : MAX_DURATION_YRS;
+  const minDurationYrs = params ? params.durationMin || MIN_DURATION_YRS : MIN_DURATION_YRS;
+
   const durationTypePair: [string, number] = getDurationTypePair();
   const periodTypePair: [string, number] = getDurationTypePair();
   const durationInYears: number =
-    Math.round(Math.random() * (MAX_DURATION_YRS - MIN_DURATION_YRS) + MIN_DURATION_YRS);
+    Math.round(Math.random() * (maxDurationYrs - minDurationYrs) + minDurationYrs);
   const fvAmount: number = roundTo((Math.random() * (maxFV - minFV) + minFV), 2);
   const pvAmount: number = roundTo((Math.random() * (maxPV - minPV) + minPV), 2);
   const pmtAmount: number = roundTo((Math.random() * (maxPmt - minPmt) + minPmt), 2);

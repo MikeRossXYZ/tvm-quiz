@@ -10,7 +10,6 @@ Status:
 
 Roadmap: 
 
-* Hint/"just tell me" feature
 * Advanced TVM questions
 * Scoreboard (requires accompaning backend server)
 * Two stage questions

@@ -102,7 +102,7 @@ const questionTemplates:
       the first deposit at the end of this ${vs.periodType}?
       The interest rate is ${vs.rate}% per annum.`;
     },
-    parameters: { fvMax: 10000, fvMin: 5000 },
+    parameters: { fvMax: 10000, fvMin: 5000, durationMin: 3, durationMax: 5 },
   },
   {
     type: QuestionType.FvDueAmt,
@@ -114,7 +114,7 @@ const questionTemplates:
       per ${vs.periodType}. How much will have accumulated by the time ${vs.name} retires
       if the interest rate is ${vs.rate}%? Assume ${vs.name} begins to save immediately.`;
     },
-    parameters: { pmtMin: 100, pmtMax: 1000 },
+    parameters: { pmtMin: 100, pmtMax: 1000, durationMin: 15, durationMax: 25 },
   },
   {
     type: QuestionType.FvDuePmt,
@@ -127,7 +127,7 @@ const questionTemplates:
       to save ${vs.periodType}ly in order to meet the goal? Assume an interest rate of
       ${vs.rate}% and the first deposit to be today.`;
     },
-    parameters: { fvMin: 15000, fvMax: 40000 },
+    parameters: { fvMin: 15000, fvMax: 40000, durationMin: 1, durationMax: 4 },
   },
 ];
 
