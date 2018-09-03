@@ -10,6 +10,8 @@
 </template>
 
 <style lang="scss" scoped="true">
+@import "../styles/index";
+
 .navbar-brand {
   margin-right: 2rem;
 }

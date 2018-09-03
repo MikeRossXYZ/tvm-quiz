@@ -1,72 +1,85 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <!-- Question text -->
-        <div id="question-area" class="row">
-          <div class="col-12">
-            <p id="question-text">{{ questionText || 'Question text' }}</p>
-          </div>
-        </div>
-        <!-- Answer -->
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="form-group">
-              <input type="number" class="form-control text-center form-control-lg"
-                :class="{'font-weight-bold': guessStatus === 'incorrect',
-                'text-warning': guessStatus === 'incorrect', 'text-danger': guessStatus === 'justTellMe'}"
-                id="answer-field" v-model="userGuess" :disabled="isQuestionFinished()"
-                aria-label="Answer field" step="0.01" min="0">
-            </div>
-            <div class="form-group">
-              <button v-if="isQuestionFinished()" type="submit" class="btn-validate-answer btn" 
-                :class="{'btn-success': guessStatus === 'correct', 'btn-danger': guessStatus === 'justTellMe'}"
-                @click="updateQuestion" aria-label="Get the next question">Get next question</button>
-              <button v-else class="btn-validate-answer btn btn-primary" 
-                :class="{'btn-warning': guessStatus == 'incorrect'}" type="submit"
-                @click="validateAnswer" :disabled="guessStatus === 'correct'"
-                aria-label="Check answer">Check answer</button>
-            </div>
-            <div v-if="guessStatus === 'correct'" class="alert alert-success" role="alert">
-              You're right!
-            </div>
-            <div class="form-group" v-if="!isQuestionFinished()">
-              <div class="row">
-                <!-- New question btn -->
-                <div class="col-6">
-                  <button class="btn btn-outline-secondary w-100" @click="updateQuestion"
-                    aria-label="Skip to next question">Skip</button>
-                </div>
-                <!-- Get hint btn -->
-                <div class="col-6">
-                  <button class="btn btn-outline-danger w-100" @click="justTellMe"
-                    aria-label="Just tell me the answer">Just tell me</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- end row -->
-      </div><!-- end .question -->
-    </div><!-- end .row -->
-  </div><!-- end .container -->
+  <main class="container">
+    <!-- Question text -->
+    <div id="question-area">
+      <p id="question-text">{{ questionText || 'Question text' }}</p>
+    </div>
+    <!-- Answer -->
+    <div id="answer-area">
+      <div class="form-group">
+        <input type="number" id="input-guess"
+          :class="{'font-weight-bold': guessStatus === 'incorrect',
+          'text-warning': guessStatus === 'incorrect', 'text-danger': guessStatus === 'justTellMe'}"
+          v-model="userGuess" :disabled="isQuestionFinished()"
+          aria-label="Answer field" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+        <button v-if="isQuestionFinished()" type="submit" class="btn-validate-answer btn" 
+          :class="{'btn-success': guessStatus === 'correct', 'btn-danger': guessStatus === 'justTellMe'}"
+          @click="updateQuestion" aria-label="Get the next question">Get next question</button>
+        <button v-else class="btn-validate-answer btn btn-primary" 
+          :class="{'btn-warning': guessStatus == 'incorrect'}" type="submit"
+          @click="validateAnswer" :disabled="guessStatus === 'correct'"
+          aria-label="Check answer">Check answer</button>
+      </div>
+      <div v-if="guessStatus === 'correct'" class="alert alert-success" role="alert">
+        You're right!
+      </div>
+      <div class="form-group" v-if="!isQuestionFinished()">
+      <!-- New question btn -->
+        <button class="btn-secondary" @click="updateQuestion"
+          aria-label="Skip to next question">Skip</button>
+      <!-- Get hint btn -->
+        <button class="btn-secondary" @click="justTellMe"
+          aria-label="Just tell me the answer">Just tell me</button>
+      </div>
+    </div><!-- end row -->
+  </main><!-- end .container -->
 </template>
 
 <style scoped lang="scss">
+@import "../styles/index";
+
 #question-area {
   font-size: 1.5rem;
   font-weight: bold;
+  line-height: 1.4;
   margin-bottom: 1.4rem;
   text-align: center;
 }
 
-#answer-field {
-  padding-left: 0;
-  padding-right: 0;
+#answer-area {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto 1rem auto;
+    max-width: 25rem;
+    width: 100%;
+
+    .btn-validate-answer {
+      font-size: 1.25rem;
+      font-weight: bold;
+      width: 100%;
+    }
+
+    .btn-secondary {
+      flex-basis: 0;
+      flex-grow: 1;
+
+      &:not(:last-child) {
+        margin-right: 0.4rem;
+      }
+    }
+  }
 }
 
-.btn-validate-answer {
-  font-size: 1.25rem;
-  font-weight: bold;
+#input-guess {
+  box-sizing: border-box;
+  font-size: 1.5rem;
+  text-align: center;
   width: 100%;
 }
 
